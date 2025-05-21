@@ -1,4 +1,3 @@
-# Modified to include support for NSIS Windows installer - David Bruce <davidstuartbruce@gmail.com>
 
 # Support for gettext:
 datadir = @datadir@
@@ -40,8 +39,6 @@ uninstall-local:
 	-rm -f $(DESTDIR)$(prefix)/share/$(PACKAGE)/tuxtype.ico
 	-rm -rf $(DESTDIR)$(prefix)/share/$(PACKAGE)
 
-# Sould we skip uninstall of these directories to avoid clobbering user-created files
-# on upgrade?:
 install-data-hook:
 # Global configuration (e.g. /etc/tuxtype):
 	$(MKDIR_P) -m 755 $(DESTDIR)$(pkgsysconfdir)
