@@ -7,6 +7,8 @@
 <h3> Qompass AI on TuxType </h3>
 
 ![Repository Views](https://komarev.com/ghpvc/?username=qompassai-tuxtype)
+![GitHub all releases](https://img.shields.io/github/downloads/qompassai/tuxtype/total?style=flat-square)
+
   <a href="https://tux4kids.alioth.debian.org/tuxtype/">
   <img src="https://img.shields.io/badge/TuxType-typing%20game-blue?style=for-the-badge&logo=gnu&logoColor=white" alt="TuxType">
 </a>
