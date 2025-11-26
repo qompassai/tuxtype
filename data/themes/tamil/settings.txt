@@ -1,2 +1,0 @@
-theme_font_name=lohit_ta.ttf
-theme_locale_name=ta_IN

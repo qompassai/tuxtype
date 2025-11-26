@@ -1,2 +1,0 @@
-theme_font_name=lohit_pa.ttf
-theme_locale_name=pa_IN

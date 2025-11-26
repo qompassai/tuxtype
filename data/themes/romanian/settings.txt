@@ -1,2 +1,0 @@
-theme_locale_name=ro_RO.UTF-8
-

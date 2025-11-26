@@ -1,2 +1,0 @@
-theme_font_name=Kedage-n.ttf
-theme_locale_name=kn_IN

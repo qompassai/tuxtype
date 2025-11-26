@@ -1,2 +1,0 @@
-theme_font_name=DoulosSILR.ttf
-theme_locale_name=uk_UA.UTF-8

@@ -1,2 +1,0 @@
-theme_font_name=utkal.ttf
-theme_locale_name=or_IN

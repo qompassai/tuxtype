@@ -1,3 +1,0 @@
-*.png -filter -diff -merge -text
-*.jpg -filter -diff -merge -text
-*.wav -filter -diff -merge -text

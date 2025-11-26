@@ -1,2 +1,0 @@
-theme_font_name=lohit_gu.ttf
-theme_locale_name=gu_IN

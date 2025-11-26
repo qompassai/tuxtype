@@ -1,2 +1,0 @@
-theme_font_name=Vemana.ttf
-theme_locale_name=te_IN
