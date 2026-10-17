@@ -11,12 +11,12 @@ Upstream ships no test suite, so these tests gate what exists:
   (A full build is blocked upstream of this repo: configure
   requires libt4k_common, a separate tux4kids library that is
   not vendored here; measured on primo 2026-10-16.)
-- the Nix flake is a KNOWN FAILURE, kept as a strict xfail:
-  flake.nix is a Rust template (buildRustPackage over a
-  Cargo.lock) laid over a C/autotools project, so evaluation
-  fails on the missing Cargo.lock. Strict xfail means the day
-  the flake is fixed — or removed — this suite goes red until
-  the marker is removed.
+- the Nix flake: a real C/autotools flake since 2026-10-17
+  (Decision 7). It packages libt4k_common from a pinned upstream
+  rev (nixpkgs' 0.1.1 predates the T4K_Tts_say API tuxtype 1.8.3
+  calls) and builds tuxtype itself from this tree; both build
+  derivations are gated below. (Before: flake.nix was a Rust
+  template over a Cargo.lock that does not exist.)
 
 Run: python3 -m pytest tests/ -q
 """
@@ -130,14 +130,6 @@ def test_data_tree_validator_catches_missing_dir(tmp_path: Path) -> None:
     assert any('keyboard.lst' in problem for problem in problems)
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        'flake.nix is a Rust template over a C/autotools project: '
-        'evaluation fails because ./Cargo.lock does not exist. '
-        "Fixing or removing the flake is Matt's packaging call."
-    ),
-)
 def test_flake_evaluates() -> None:
     if shutil.which('nix') is None:
         pytest.skip('nix not installed')
@@ -150,3 +142,15 @@ def test_flake_evaluates() -> None:
         check=False,
     )
     assert result.returncode == 0, result.stderr[-2000:]
+
+
+def test_flake_builds() -> None:
+    if shutil.which('nix') is None:
+        pytest.skip('nix not installed')
+    for attr in ('libt4k_common', 'tuxtype'):
+        result = subprocess.run(
+            ['nix', 'build', f'path:.#{attr}', '--no-link'],
+            cwd=REPO_ROOT, capture_output=True, text=True,
+            timeout=1800, check=False,
+        )
+        assert result.returncode == 0, (attr + ': ' + result.stderr[-1500:])
